@@ -80,13 +80,17 @@
                     let tasksCopy = [...this.tasks];
                     tasksCopy.splice(index, 1);
                     this.tasks = tasksCopy;
+                    this.reorderTasks();
+                }
+            },
+            reorderTasks: function() {
+                for (var i = 0; i < this.tasks.length; i++) {
+                    this.tasks[i].order = i + 1;
                 }
             },
             handleDrag: function() {
                 this.dragging = false;
-                for (var i = 0; i < this.tasks.length; i++) {
-                    this.tasks[i].order = i + 1;
-                }
+                this.reorderTasks();
             }
         }
     }
